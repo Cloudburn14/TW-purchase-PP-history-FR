@@ -26,21 +26,26 @@
 // ======================================================
 
 (function () {
-    if (typeof game_data === "undefined") {
-        alert("Ce script doit être lancé depuis Tribal Wars.");
+
+    // 🔒 Sécurité : attendre que le jeu soit prêt
+    if (typeof game_data === 'undefined') {
+        console.warn('[PP] game_data non disponible');
         return;
     }
 
-    // Si on n'est pas sur le journal des points premium
-    if (game_data.screen !== "premium" || game_data.mode !== "log") {
-        UI.InfoMessage(
-            "Redirection vers le journal des points premium…<br>Relance le script une fois sur la page.",
-            5000
-        );
-        window.location.href = game_data.link_base_pure + "premium&mode=log";
+    // 📍 Si on n'est PAS sur le journal des PP → redirection
+    if (game_data.screen !== 'premium' || game_data.mode !== 'log') {
+        console.log('[PP] Redirection vers le journal des points premium');
+        location.href = game_data.link_base_pure + 'premium&mode=log';
         return;
     }
-})();
+
+    // ⏳ Attendre que le tableau soit chargé
+    if (!document.querySelector('table.vis')) {
+        console.log('[PP] Page en cours de chargement, relancez le script');
+        UI.InfoMessage('Chargement du journal des PP… relancez le script.', 3000);
+        return;
+    }
 
 (function () {
 
