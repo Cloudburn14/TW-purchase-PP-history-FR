@@ -1,4 +1,30 @@
-alert("PP script chargé");
+(function () {
+
+    alert("PP script exécuté");
+
+    if (typeof game_data === 'undefined') {
+        alert("ERREUR : game_data undefined");
+        return;
+    }
+
+    alert("game_data OK");
+
+    alert("screen=" + game_data.screen + " / mode=" + game_data.mode);
+
+    if (game_data.screen !== 'premium' || game_data.mode !== 'log') {
+        alert("Redirection vers le journal premium");
+        location.href = game_data.link_base_pure + "premium&mode=log";
+        return;
+    }
+
+    alert("On est sur le journal premium");
+
+    if (!document.querySelector('table.vis')) {
+        alert("Tableau non encore chargé");
+        return;
+    }
+
+    alert("Tableau détecté, lancement du script");
 
 
 // ============================================================================
