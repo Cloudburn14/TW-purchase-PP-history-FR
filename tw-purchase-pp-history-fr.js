@@ -1,27 +1,3 @@
-(function () {
-
-    if (typeof game_data === 'undefined') {
-        return;
-    }
-
-    // 🔒 Ne s'exécute QUE sur le journal des PP
-    if (game_data.screen !== 'premium' || game_data.mode !== 'log') {
-        UI.InfoMessage(
-            'Ouvre le journal des Points Premium puis relance le script.',
-            4000
-        );
-        return;
-    }
-
-    // ⏳ Attendre que le tableau soit présent
-    if (!document.querySelector('table.vis')) {
-        UI.InfoMessage(
-            'Chargement du journal des PP… relance le script dans 2 secondes.',
-            3000
-        );
-        return;
-    }
-
 // ============================================================================
 // Tribal Wars – Journal des Points Premium
 // Auteur : Cloudburn
@@ -51,23 +27,25 @@
 
 (function () {
 
-    // 🔒 Sécurité : attendre que le jeu soit prêt
     if (typeof game_data === 'undefined') {
-        console.warn('[PP] game_data non disponible');
         return;
     }
 
-    // 📍 Si on n'est PAS sur le journal des PP → redirection
+    // Le script ne s'exécute QUE sur le journal des PP
     if (game_data.screen !== 'premium' || game_data.mode !== 'log') {
-        console.log('[PP] Redirection vers le journal des points premium');
-        location.href = game_data.link_base_pure + 'premium&mode=log';
+        UI.InfoMessage(
+            'Ouvre le Journal des Points Premium via le bouton "PP", puis relance le script.',
+            4000
+        );
         return;
     }
 
-    // ⏳ Attendre que le tableau soit chargé
+    // Attendre que le tableau soit chargé
     if (!document.querySelector('table.vis')) {
-        console.log('[PP] Page en cours de chargement, relancez le script');
-        UI.InfoMessage('Chargement du journal des PP… relancez le script.', 3000);
+        UI.InfoMessage(
+            'Chargement du Journal des PP… relance le script dans quelques secondes.',
+            3000
+        );
         return;
     }
 
