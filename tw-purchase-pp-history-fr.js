@@ -1,3 +1,6 @@
+alert("PP script chargé");
+
+
 // ============================================================================
 // Tribal Wars – Journal des Points Premium
 // Auteur : Cloudburn
