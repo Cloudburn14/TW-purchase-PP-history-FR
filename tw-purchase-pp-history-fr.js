@@ -21,6 +21,27 @@
 // ✔ Script approuvable par InnoGames
 // ============================================================================
 
+// ======================================================
+// Vérification de la page - Redirection si nécessaire
+// ======================================================
+
+(function () {
+    if (typeof game_data === "undefined") {
+        alert("Ce script doit être lancé depuis Tribal Wars.");
+        return;
+    }
+
+    // Si on n'est pas sur le journal des points premium
+    if (game_data.screen !== "premium" || game_data.mode !== "log") {
+        UI.InfoMessage(
+            "Redirection vers le journal des points premium…<br>Relance le script une fois sur la page.",
+            5000
+        );
+        window.location.href = game_data.link_base_pure + "premium&mode=log";
+        return;
+    }
+})();
+
 (function () {
 
     console.clear();
