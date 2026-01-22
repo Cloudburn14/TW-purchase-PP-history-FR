@@ -1,31 +1,26 @@
 (function () {
 
-    alert("PP script exécuté");
-
     if (typeof game_data === 'undefined') {
-        alert("ERREUR : game_data undefined");
         return;
     }
 
-    alert("game_data OK");
-
-    alert("screen=" + game_data.screen + " / mode=" + game_data.mode);
-
+    // 🔒 Ne s'exécute QUE sur le journal des PP
     if (game_data.screen !== 'premium' || game_data.mode !== 'log') {
-        alert("Redirection vers le journal premium");
-        location.href = game_data.link_base_pure + "premium&mode=log";
+        UI.InfoMessage(
+            'Ouvre le journal des Points Premium puis relance le script.',
+            4000
+        );
         return;
     }
 
-    alert("On est sur le journal premium");
-
+    // ⏳ Attendre que le tableau soit présent
     if (!document.querySelector('table.vis')) {
-        alert("Tableau non encore chargé");
+        UI.InfoMessage(
+            'Chargement du journal des PP… relance le script dans 2 secondes.',
+            3000
+        );
         return;
     }
-
-    alert("Tableau détecté, lancement du script");
-
 
 // ============================================================================
 // Tribal Wars – Journal des Points Premium
