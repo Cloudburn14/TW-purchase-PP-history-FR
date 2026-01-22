@@ -1,6 +1,6 @@
 // ============================================================================
 // Tribal Wars – Journal des Points Premium
-// Auteur : <ton pseudo>
+// Auteur : Cloudburn
 // Version : 1.0
 //
 // Description :
